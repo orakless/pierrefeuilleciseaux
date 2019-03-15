@@ -1,8 +1,12 @@
+* {
+	font-family: 'Ubuntu', sans-serif;s
+}
+
 body {
 	background-color: #444444;
 }
 
-#screen, #choice, #score, #menu-exp {
+#screen, #choice, #score, #endScoreManche {
 	border-radius: 45px;
 	background-color: #FFFFFF;
 	padding: 8px;
@@ -13,6 +17,62 @@ body {
 	justify-content: space-between;
 	
 }
+
+#endDialog {
+	border-radius: 45px;
+	background-color: #FFFFFF;
+	padding: 8px;
+	margin: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#endTxt {
+	font-size: 25px;
+}
+
+#choice {
+	background-color: #CCCCCC;
+}
+
+a {
+	background-color: #119911;
+    text-decoration: none;
+    padding: 8px;
+    width: 50%;
+    margin-bottom: 8px;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+}
+
+#exp-title {
+	border-radius: 45px 45px 0px 0px;
+	margin: 8px 8px 8px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#menu-exp {
+	background-color: #FFFFFF;
+	border-radius: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin:8px;
+}
+
+#exp-txt {
+	border-radius: 10px;
+	background-color: #DEDEDE;
+	margin: 8px 20px 8px 8px;
+	padding: 8px;
+	text-align: center;
+}
+
 
 .choix:hover {
 	border-radius: 45px;
@@ -34,4 +94,30 @@ body {
 	padding: 8px;
 	margin: 8px;
 	color: #FFFFFF;
+}
+
+#centerMancEgal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#divManche {
+	background-color: #222222;
+	border-radius: 10px;
+	padding: 0px;
+	color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#mancheTitle {
+	font-size: 25px;
+}
+
+#nbManche {
+	font-size: 45px;
 }

@@ -17,11 +17,28 @@ var button = {
     victStatus: document.getElementById('victStatus')
 };
 
+var text = {
+    userScore: document.getElementById('userScore'),
+    compScore: document.getElementById('compScore'),
+    nbMancheMax: document.getElementById('nbManche'),
+    nbEgalite: document.getElementById('nbEgalites')
+}
+
+var partie = {
+    manche: 0,
+    nbMancheMax: 10
+}
+
 var gagnant;
+var egalite = 0;
 
 button.userRock.addEventListener("click", appuiSurPierre);
 button.userPaper.addEventListener("click", appuiSurFeuille);
 button.userScissors.addEventListener("click", appuiSurCiseaux);
+
+
+text.nbMancheMax.textContent=partie.manche+'/'+partie.nbMancheMax;
+document.getElementById('endDialog').style.visibility= 'hidden';
 
 function randomComp() {
     return Math.floor(3*Math.random());
@@ -54,6 +71,36 @@ function changementImg() { // Change l'image
 
 }
 
+function verifManche() { // vérifie si la partie est finie, et affiche une boîte si oui
+    if (partie.manche+1 > partie.nbMancheMax) {
+        document.getElementById('choice').style.display= 'none';
+        document.getElementById('endDialog').style.visibility= 'visible';
+        if (user.score > comp.score) {
+            document.getElementById('endTxt').textContent='Gagné!';
+        } else if (user.score < comp.score) {
+            document.getElementById('endTxt').textContent='Perdu!'   
+        } else {
+            document.getElementById('endTxt').textContent='Égalité!'
+        }
+    }
+
+}
+
+function majScoreManche() { // met à jour le score et les manches à l'écran
+    partie.manche++;
+    if (gagnant == 'O') {
+        comp.score++;
+    } else if (gagnant == 'U') {
+        user.score++;
+    } else {
+        egalite++;
+    }
+    text.userScore.textContent=user.score;
+    text.compScore.textContent=comp.score;
+    text.nbMancheMax.textContent=partie.manche+'/'+partie.nbMancheMax;
+    text.nbEgalite.textContent=egalite;
+}
+
 function verif() {
     if (user.choice == 0 && comp.choice == 1 || user.choice == 1 && comp.choice == 2 || user.choice == 2 && comp.choice == 0) {
         return 'O';   
@@ -69,6 +116,8 @@ function appuiSurPierre() {
     comp.choice = randomComp();
     gagnant = verif();
     changementImg();
+    majScoreManche();
+    verifManche();
 
 }
 
@@ -77,6 +126,8 @@ function appuiSurFeuille() {
     comp.choice = randomComp();
     gagnant = verif();
     changementImg();
+    majScoreManche();
+    verifManche();
 
 }
 
@@ -85,5 +136,7 @@ function appuiSurCiseaux() {
     comp.choice = randomComp();
     gagnant = verif();
     changementImg();
+    majScoreManche();
+    verifManche();
 
-}
+}   
